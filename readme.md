@@ -117,7 +117,9 @@ Enter this IP and the related default gateway into the install.bat file in the n
 ```
 sudo nano /opt/pxe/wimboot/install.bat
 ```
+
 Original install.bat file
+
 <img src="assets/install.bat_original.png" width="515" height="149" alt="Original install.bat file from repository">
 
 Install Artifact server details
