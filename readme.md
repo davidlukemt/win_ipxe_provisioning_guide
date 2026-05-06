@@ -97,15 +97,15 @@ Enter this IP and the related default gateway into the install.bat file in the n
 
 Once install.bat file is updated with the public IP of the server, press any key on the bare metal server console to continue the iPXE boot process
 
-After loading the wimboot environment, the install.bat script will
-	+ initialize wimboot networking
-	+ print network configuration with ipconfig /all command
-	+ ping 127.0.0.1 5 times to wait for network initialization to complete
-	+ set the IP address on the Public interface of the bare metal server with netsh interface command
-	+ print network configuration again for Public IP config validation
-	+ ping 1.1.1.1 to both test Public IP config and wait for networking to start functioning as expected
-	+ mount the samba share with extracted install ISO files
-	+ run the setup.exe Windows OS install application
+After loading the wimboot environment, the install.bat script will:
++ initialize wimboot networking
++ print network configuration with ipconfig /all command
++ ping 127.0.0.1 5 times to wait for network initialization to complete
++ set the IP address on the Public interface of the bare metal server with netsh interface command
++ print network configuration again for Public IP config validation
++ ping 1.1.1.1 to both test Public IP config and wait for networking to start functioning as expected
++ mount the samba share with extracted install ISO files
++ run the setup.exe Windows OS install application
 
 >[!NOTE]	
 >If Network Interfaces don't show up as expected, you will need to modify the windows install to include relevant drivers for the Network Interfaces on the Bare Metal server
