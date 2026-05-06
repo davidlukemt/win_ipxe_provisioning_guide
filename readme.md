@@ -15,9 +15,9 @@ Evaluation Center Server 2025: https://www.microsoft.com/en-us/evalcenter/evalua
 
 ### Create Install Artifact server (LSH VM or small instance recommended)
 
-### Install dependencies/tools
+### Update package lists, Install updates, and Install dependencies/tools
 ```
-sudo apt install -y podman
+sudo apt update && sudo apt upgrade -y && sudo apt install -y podman
 ```
 
 ### Copy WinServer ISO to VM environment
