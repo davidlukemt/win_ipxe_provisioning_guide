@@ -11,7 +11,7 @@ https://rpi4cluster.com/pxe-windows-10/
 ## Guide
 
 ### Acquire Windows Server OS Install ISO
-	Evaluation Center Server 2025: https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2025
+Evaluation Center Server 2025: https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2025
 
 ### Create Install Artifact server (LSH VM or small instance recommended)
 
