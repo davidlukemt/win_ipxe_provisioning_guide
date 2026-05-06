@@ -43,13 +43,13 @@ sudo umount /mnt
 
 ### Download wimboot from iPXE github repository into the wimboot directory
 ```
-curl --output-dir /opt/pxe/wimboot/ -O https://github.com/ipxe/wimboot/raw/refs/heads/master/wimboot
+sudo curl --output-dir /opt/pxe/wimboot/ -O https://github.com/ipxe/wimboot/raw/refs/heads/master/wimboot
 ```
 
 ### Download the winpeslh.ini and isntall.bat examples from this repository into the /opt/pxe/wimboot directory
 ```
-curl --output-dir /opt/pxe/wimboot/ -O https://github.com/davidlukemt/win_ipxe_provisioning_guide/raw/refs/heads/main/wimboot_config/winpeshl.ini
-curl --output-dir /opt/pxe/wimboot/ -O https://github.com/davidlukemt/win_ipxe_provisioning_guide/raw/refs/heads/main/wimboot_config/install.bat
+sudo curl --output-dir /opt/pxe/wimboot/ -O https://github.com/davidlukemt/win_ipxe_provisioning_guide/raw/refs/heads/main/wimboot_config/winpeshl.ini
+sudo curl --output-dir /opt/pxe/wimboot/ -O https://github.com/davidlukemt/win_ipxe_provisioning_guide/raw/refs/heads/main/wimboot_config/install.bat
 ```
 
 #### winpeshl.ini file
