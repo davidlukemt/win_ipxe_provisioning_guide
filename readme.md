@@ -79,6 +79,9 @@ sudo ufw route allow in on enp1s0 out on podman0 to any port 8445
 ```
 
 ### Deploy Bare Metal server with following Custom iPXE script
+>[!IMPORTANT]	
+>Be sure to update the example below with the IP of your iPXE install artifact server
+
 ```
 #!ipxe
 echo Note server public IP address in LSH Dashboard and 
@@ -109,8 +112,6 @@ boot || goto failed
 >[!IMPORTANT]	
 >Use this pause to note the Public IP of the Bare Metal server on the LSH server page
 Enter this IP and the related default gateway into the install.bat file in the netsh line
-
-
 
 >[!NOTE]	
 >Note the interface name in the netsh line of the install.bat file may need to be modified based on which interface is the public interface of the deployed bare metal server
