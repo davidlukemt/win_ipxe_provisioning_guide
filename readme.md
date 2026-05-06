@@ -99,12 +99,12 @@ Once install.bat file is updated with the public IP of the server, press any key
 
 After loading the wimboot environment, the install.bat script will:
 + initialize wimboot networking
-+ print network configuration with ipconfig /all command
++ print network configuration with ```ipconfig /all``` command
 + ping 127.0.0.1 5 times to wait for network initialization to complete
-+ set the IP address on the Public interface of the bare metal server with netsh interface command
++ set the IP address on the Public interface of the bare metal server with ```netsh interface``` command
 + print network configuration again for Public IP config validation
 + ping 1.1.1.1 to both test Public IP config and wait for networking to start functioning as expected
-+ mount the samba share with extracted install ISO files
++ mount the SMB share with extracted install ISO files
 + run the setup.exe Windows OS install application
 
 >[!NOTE]	
