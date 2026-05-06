@@ -88,7 +88,8 @@ boot || goto failed
 
 ### The above iPXE script has a pause prompting for input to continue to hold the deployment process until you have Console access. 
 	
-Use this pause to note the Public IP of the Bare Metal server on the LSH server page
+>[!IMPORTANT]	
+>Use this pause to note the Public IP of the Bare Metal server on the LSH server page
 Enter this IP and the related default gateway into the install.bat file in the netsh line
 
 >[!NOTE]	
