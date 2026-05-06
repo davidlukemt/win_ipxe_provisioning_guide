@@ -43,13 +43,13 @@ sudo umount /mnt
 
 ### Download wimboot from iPXE github repository into the wimboot directory
 ```
-sudo curl --output-dir /opt/pxe/wimboot/ -O https://github.com/ipxe/wimboot/raw/refs/heads/master/wimboot
+sudo curl --output-dir /opt/pxe/wimboot/ -L -O https://github.com/ipxe/wimboot/raw/refs/heads/master/wimboot
 ```
 
 ### Download the winpeslh.ini and isntall.bat examples from this repository into the /opt/pxe/wimboot directory
 ```
-sudo curl --output-dir /opt/pxe/wimboot/ -O https://github.com/davidlukemt/win_ipxe_provisioning_guide/raw/refs/heads/main/wimboot_config/winpeshl.ini
-sudo curl --output-dir /opt/pxe/wimboot/ -O https://github.com/davidlukemt/win_ipxe_provisioning_guide/raw/refs/heads/main/wimboot_config/install.bat
+sudo curl --output-dir /opt/pxe/wimboot/ -O https://raw.githubusercontent.com/davidlukemt/win_ipxe_provisioning_guide/refs/heads/main/wimboot_config/winpeshl.ini
+sudo curl --output-dir /opt/pxe/wimboot/ -O https://raw.githubusercontent.com/davidlukemt/win_ipxe_provisioning_guide/refs/heads/main/wimboot_config/install.bat
 ```
 
 #### winpeshl.ini file
@@ -103,24 +103,84 @@ boot || goto failed
 ### Once available, open Remote Access to newly deployed Bare Metal server and launch the Remote Control Console
 
 ### The above iPXE script has a pause prompting for input to continue to hold the deployment process until you have Console access. 
-	
+
+<img src="assets/BM_Remote_Access_Console.png" width="625" height="455" alt="iPXE Boot will pause here">
+
 >[!IMPORTANT]	
 >Use this pause to note the Public IP of the Bare Metal server on the LSH server page
 Enter this IP and the related default gateway into the install.bat file in the netsh line
 
+
+
 >[!NOTE]	
 >Note the interface name in the netsh line of the install.bat file may need to be modified based on which interface is the public interface of the deployed bare metal server
+```
+sudo nano /opt/pxe/wimboot/install.bat
+```
+Original install.bat file
+<img src="assets/install.bat_original.png" width="515" height="149" alt="Original install.bat file from repository">
+
+Install Artifact server details
+
+<img src="assets/LSH_Dashboard_VM_details.png" width="637" height="220" alt="Install Artifact server details">
+
+Bare Metal server details
+
+<img src="assets/LSH_Dashboard_BM_details.png" width="637" height="220" alt="Bare Metal server details">
+
+After adding bare metal instance IP to install.bat file
+
+<img src="assets/install.bat_updated.png" width="515" height="149" alt="Updated install.bat with Bare Metal and Install Artifact server IPs">
 
 Once install.bat file is updated with the public IP of the server, press any key on the bare metal server console to continue the iPXE boot process
 
+<img src="assets/BM_Remote_Access_Console_Loading.png" width="625" height="455" alt="Windows PE Loading">
+
+<img src="assets/BM_Remote_Access_Console_booting.png" width="625" height="455" alt="Windows PE still Loading">
+
 Upon loading into winpe, the install.bat script will be run automatically. A breakdown of the commands in this script can be found above.
+
+<img src="assets/BM_Remote_Access_Console_install.bat_working1.png" width="625" height="455" alt="Network init started, ping wait for init to complete">
+
+<img src="assets/BM_Remote_Access_Console_install.bat_working2.png" width="625" height="455" alt="Network config applied, ping to test config">
 
 >[!NOTE]	
 >If Network Interfaces don't show up as expected, you will need to modify the windows install to include relevant drivers for the Network Interfaces on the Bare Metal server
 >https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/add-and-remove-drivers-to-an-offline-windows-image?view=windows-11
 
+<img src="assets/BM_Remote_Access_Console_install.bat_working3.png" width="625" height="455" alt="SMB mounted, setup.exe started">
+
+<img src="assets/BM_Remote_Access_Console_install.bat_setup1.png" width="625" height="455" alt="Windows Server Setup window">
+
 ### Click through Windows OS install application as normal
+
+<img src="assets/BM_Remote_Access_Console_install.bat_setup3.png" width="625" height="455" alt="Windows Server Setup Select Edition">
+
+<img src="assets/BM_Remote_Access_Console_install.bat_setup4.png" width="625" height="455" alt="Windows Server Setup install location">
 
 >[!NOTE]	
 >If drives don't show up as expected, you will need to modify the windows install to include relevant drivers for storage on the Bare Metal server
 >https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/add-and-remove-drivers-to-an-offline-windows-image?view=windows-11
+
+<img src="assets/BM_Remote_Access_Console_install.bat_setup5.png" width="625" height="455" alt="Windows Server Setup Ready to Install">
+
+<img src="assets/BM_Remote_Access_Console_install.bat_setup6.png" width="625" height="455" alt="Windows Server Install in progress">
+
+<img src="assets/BM_Remote_Access_Console_install.bat_setup7.png" width="625" height="455" alt="First Reboot during install">
+
+<img src="assets/BM_Remote_Access_Console_install.bat_setup8.png" width="625" height="455" alt="Install continues after first reboot">
+
+<img src="assets/BM_Remote_Access_Console_install_complete.png" width="625" height="455" alt="Install complete after second reboot">
+
+### Configure BM Server Public Networking after install
+
+Configure the Public IP address from the Bare Metal servers detail page on the Public NIC of the server.
+
+<img src="assets/BM_Remote_Access_Console_configure_public_network1.png" width="625" height="455" alt="Configure Public NIC of the server">
+
+>[!NOTE]	
+>Windows doesn't work properly with /31 subnets, use /32 instead and accept the warning but continue as normal
+
+<img src="assets/BM_Remote_Access_Console_configure_public_network2.png" width="625" height="455" alt="Windows doesn't like /31, use /32 instead">
+
+<img src="assets/BM_Remote_Access_Console_configure_public_network3.png" width="625" height="455" alt="Validate public access with a test ping">
