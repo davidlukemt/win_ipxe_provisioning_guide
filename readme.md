@@ -36,7 +36,9 @@ sudo mkdir -p /opt/pxe/wimboot /opt/pxe/winserver25_eval
 # Mount ISO
 sudo mount ~/winserver25_eval.iso /mnt
 # Copy contents to x64/ directory
-sudo cp -R /mnt/* /opt/pxe/winserver25_eval/
+sudo cp -v -R /mnt/* /opt/pxe/winserver25_eval/
+# Unmount ISO
+sudo umount /mnt
 ```
 
 ### Download wimboot from iPXE github repository into the wimboot directory
